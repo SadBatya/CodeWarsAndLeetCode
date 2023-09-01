@@ -17,3 +17,15 @@ let getCount = (str) => {
 }
 
 getCount(str)
+
+
+//Второй способ
+function getCount(str) {
+  return (str.match(/[aeiou]/ig)||[]).length;
+}
+
+
+//Третий способ
+function getCount(str) {
+  return str.split('').filter(c => "aeiouAEIOU".includes(c)).length;
+ }
