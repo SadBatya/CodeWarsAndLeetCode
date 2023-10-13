@@ -3,4 +3,4 @@ function reverseMessage(str) {
             .replace(/(^|\s+)[a-z]/g, c => c.toUpperCase());
 }
 
-console.log(reverseMessage('Vladimir on the street'))
+console.log(reverseMessage('Vladimir senior-pomidor'))
