@@ -1,0 +1,1 @@
+const compose = (...fns) => arg => fns.reduceRight((res, fn) => fn(res), arg);
