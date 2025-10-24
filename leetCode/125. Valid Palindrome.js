@@ -29,21 +29,30 @@
 // 1 <= s.length <= 2 * 105
 // s consists only of printable ASCII characters.
 
+// Более простое решение
 var isPalindrome = function (s) {
   const regex = /[^a-zA-Z0-9]/g;
   const clean = s.replace(regex, "").toLowerCase();
 
-  let l = 0;
-  let r = clean.length - 1;
-
-  while (l <= r) {
-    if (clean[l] === clean[r]) {
-      l++;
-      r--;
-    } else {
-      return false;
-    }
-  }
-
-  return true;
+  return clean === clean.split("").reverse().join("");
 };
+
+// Решение с помощью двух указателей
+// var isPalindrome = function (s) {
+//   const regex = /[^a-zA-Z0-9]/g;
+//   const clean = s.replace(regex, "").toLowerCase();
+
+//   let l = 0;
+//   let r = clean.length - 1;
+
+//   while (l <= r) {
+//     if (clean[l] === clean[r]) {
+//       l++;
+//       r--;
+//     } else {
+//       return false;
+//     }
+//   }
+
+//   return true;
+// };
