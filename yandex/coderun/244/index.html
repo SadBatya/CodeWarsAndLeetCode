@@ -1,0 +1,57 @@
+<!-- 244. Новый логотип Яндекс Такси
+Не решалась
+Лёгкая
+Логотип такси
+
+Дизайнер разработал логотип. Его потребуется использовать в самых разных условиях. Чтобы это было максимально удобно, сверстайте его с помощью одного HTML-элемента на чистом CSS.
+
+Использовать картинки (даже через data:uri) нельзя.
+
+Формат ввода
+Решение нужно предоставить в виде CSS-файла.
+
+Ваш файл будет подключен как solution.css к HTML-странице вида: -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'unsafe-inline' 'self'"
+    />
+    <style>
+      div {
+        overflow: hidden;
+        position: relative;
+        border-radius: 36px;
+        background: #000;
+        height: 192px;
+        width: 192px;
+      }
+
+      div:before {
+        height: 96px;
+        width: 192px;
+        position: absolute;
+        content: "";
+        background: linear-gradient(145deg, #fcdd2e, #fcb600);
+        z-index: 1;
+      }
+
+      div:after {
+        height: 96px;
+        width: 96px;
+        position: absolute;
+        content: "";
+        top: 96px;
+        background: #f5f4f0;
+        z-index: 2;
+        box-shadow: inset 0 7px 7px -7px rgba(0, 0, 0, 0.18);
+      }
+    </style>
+    <link rel="stylesheet" href="solution.css" />
+  </head>
+  <body>
+    <div></div>
+  </body>
+</html>
