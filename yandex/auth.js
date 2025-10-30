@@ -2,9 +2,9 @@
 // Вам нужно реализовать функцию auth(),
 // Которая вызывает asyncAuth и возвращает Promise
 
-function auth() {
-  // asyncAuth((error, data) => {})
+// asyncAuth from '.'
 
+function auth() {
   return new Promise((resolve, reject) => {
     asyncAuth((error, data) => {
       if (error) {
