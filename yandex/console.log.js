@@ -46,9 +46,35 @@ Promise.resolve(1)
   })
   .then((x) => console.log(x)) // 2
   .catch((err) => console.log(err))
-  .then((x) => Promise.resolve(x)) // 2 
+  .then((x) => Promise.resolve(x)) // undefined
   .catch((err) => console.log(err))
-  .then((x) => console.log(x)); // 2
+  .then((x) => console.log(x)); // undefined
 
 // -------------------------
 
+var i = 10;
+var array = [];
+
+while (i--) {
+  array.push(function () {
+    return i + 1;
+  });
+}
+
+console.log([array[0](), array[1]()]); //
+
+// --------------------------
+console.log("apple");
+
+setTimeout(() => console.log("pear"), 0);
+
+Promise.resolve("melone").then((res) => console.log(res));
+
+new Promise((res, rej) => {
+  console.log("orange");
+  res("pineapple");
+}).then((res) => console.log(res));
+
+console.log("lime");
+
+// apple, orange, lime, melone, pineapple, pear
