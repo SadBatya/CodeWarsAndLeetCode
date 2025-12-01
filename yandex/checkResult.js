@@ -16,8 +16,8 @@ const url2 = "google.com";
 // Функция проверки двух сервисов
 const checkServices = async (promiseArr) => {
   // ⏰ Обёртка для контроля таймаута (1 секунда)
-  const timeoutPromise = new Promise((_, reject) =>
-    setTimeout(() => reject("timeout"), 1000)
+  const timeoutPromise = new Promise((resolve, _) =>
+    setTimeout(() => resolve("timeout"), 1000)
   );
 
   try {
