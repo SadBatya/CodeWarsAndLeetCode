@@ -9,8 +9,6 @@
 
 // The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.
 
- 
-
 // Example 1:
 
 // Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
@@ -31,19 +29,44 @@
 // The result of the merge is [1].
 // Note that because m = 0, there are no elements in nums1. The 0 is only there to ensure the merge result can fit in nums1.
 
+let nums1 = [1, 2, 3, 0, 0, 0];
+let m = 3;
+let nums2 = [2, 5, 6];
+let n = 3;
 
-let nums1 = [1,2,3,0,0,0]
-let m = 3 
-let nums2 = [2,5,6] 
-let n = 3
+// var merge = function (nums1, m, nums2, n) {
+//   const result = [...nums1.slice(0, m), ...nums2.slice(0, n)].sort(
+//     (a, b) => a - b
+//   )
 
-var merge = function (nums1, m, nums2, n) {
-  const result = [...nums1.slice(0, m), ...nums2.slice(0, n)].sort(
-    (a, b) => a - b
-  )
+//   nums1.forEach((_e, index) => (nums1[index] = result[index]))
+// }
 
-  nums1.forEach((_e, index) => (nums1[index] = result[index]))
-}
+// Решение с помощью двух указателей
+const merge = (nums1, m, nums2, n) => {
+  let result = [];
+  let p1 = 0;
+  let p2 = 0;
 
-console.log(merge(nums1, m, nums2, n))
+  while (p1 < m && p2 < n) {
+    if (nums1[p1] < nums2[p2]) {
+      result.push(nums1[p1]);
+      p1++;
+    } else {
+      result.push(nums2[p2]);
+      p2++;
+    }
+  }
 
+  for (let i = 0; i < n - p2; i++) {
+    result.push(nums2[p2 + i]);
+  }
+
+  for (let i = 0; i < m - p1; i++) {
+    result.push(nums1[p1 + i]);
+  }
+
+  return result;
+};
+
+console.log(merge(nums1, m, nums2, n));
