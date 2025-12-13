@@ -4,7 +4,6 @@
 // answer[i] == "Fizz" if i is divisible by 3.
 // answer[i] == "Buzz" if i is divisible by 5.
 // answer[i] == i (as a string) if none of the above conditions are true.
- 
 
 // Example 1:
 
@@ -23,18 +22,18 @@
  * @param {number} n
  * @return {string[]}
  */
-let fizzBuzz = function(n) {
-  let arr = []
-  for(let i = 1; i <= n; i++){
-    if(i % 3 === 0 && i % 5 === 0){
-      arr.push('FizzBuzz')
-    } else if(i % 3 === 0){
-      arr.push('Fizz')
-    } else  if(i % 5 === 0){
-      arr.push('Buzz')
-    }else{
-      arr.push(String(i))
+let fizzBuzz = function (n) {
+  let arr = [];
+  for (let i = 1; i <= n; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      arr.push("FizzBuzz");
+    } else if (i % 3 === 0) {
+      arr.push("Fizz");
+    } else if (i % 5 === 0) {
+      arr.push("Buzz");
+    } else {
+      arr.push(String(i));
     }
   }
-  return arr
+  return arr;
 };

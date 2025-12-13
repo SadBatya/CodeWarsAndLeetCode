@@ -20,29 +20,28 @@
 // Input: target = 11, nums = [1,1,1,1,1,1,1,1]
 // Output: 0
 
-var minSubArrayLen = function(target, nums) {
-    let minLength = Infinity; // Устанавливаем начальное значение для минимальной длины
-    let start = 0;
-    let currentSum = 0;
+var minSubArrayLen = function (target, nums) {
+  let minLength = Infinity; // Устанавливаем начальное значение для минимальной длины
+  let start = 0;
+  let currentSum = 0;
 
-    for (let i = 0; i < nums.length; i++) {
-        currentSum += nums[i]; // Увеличиваем текущую сумму
-        
-        // Проверяем, если текущая сумма больше или равна целевой
-        while (currentSum >= target) {
-            // Обновляем минимальную длину
-            minLength = Math.min(minLength, i - start + 1);
-            // Уменьшаем текущую сумму, сдвигая начальный указатель
-            currentSum -= nums[start];
-            start++;
-        }
+  for (let i = 0; i < nums.length; i++) {
+    currentSum += nums[i]; // Увеличиваем текущую сумму
+
+    // Проверяем, если текущая сумма больше или равна целевой
+    while (currentSum >= target) {
+      // Обновляем минимальную длину
+      minLength = Math.min(minLength, i - start + 1);
+      // Уменьшаем текущую сумму, сдвигая начальный указатель
+      currentSum -= nums[start];
+      start++;
     }
+  }
 
-    return minLength === Infinity ? 0 : minLength;
+  return minLength === Infinity ? 0 : minLength;
 };
 
 // Примеры вызова функции
 console.log(minSubArrayLen(7, [2, 3, 1, 2, 4, 3])); // Output: 2
 console.log(minSubArrayLen(4, [1, 4, 4])); // Output: 1
 console.log(minSubArrayLen(11, [1, 1, 1, 1, 1, 1, 1, 1])); // Output: 0
-
