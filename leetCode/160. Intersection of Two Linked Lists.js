@@ -41,14 +41,68 @@ let getIntersectionNode = function (headA, headB) {
   }
 
   return pointA;
-
-
-  // Второй способ решение задачи
-  // let node1 = headA,
-  //   node2 = headB;
-  // while (node1 !== node2) {
-  //   node1 = node1 ? node1.next : headB;
-  //   node2 = node2 ? node2.next : headA;
-  // }
-  // return node1;
 };
+
+// let getIntersectionNode = function (headA, headB) {
+
+// Второй способ решение задачи
+// let node1 = headA,
+//   node2 = headB;
+// while (node1 !== node2) {
+//   node1 = node1 ? node1.next : headB;
+//   node2 = node2 ? node2.next : headA;
+// }
+// return node1;
+// }
+
+// Третий способ решения задачи
+// var getIntersectionNode = function(headA, headB) {
+//   if (!headA || !headB) {
+//       return null;
+//   }
+
+//   let lenA = 0;
+//   let lenB = 0;
+
+//   let curA = headA;
+//   let curB = headB;
+
+//   // считаем длину списка A
+//   while (curA) {
+//       lenA++;
+//       curA = curA.next;
+//   }
+
+//   // считаем длину списка B
+//   while (curB) {
+//       lenB++;
+//       curB = curB.next;
+//   }
+
+//   curA = headA;
+//   curB = headB;
+
+//   // выравниваем указатели
+//   if (lenA > lenB) {
+//       let diff = lenA - lenB;
+//       while (diff--) {
+//           curA = curA.next;
+//       }
+//   } else {
+//       let diff = lenB - lenA;
+//       while (diff--) {
+//           curB = curB.next;
+//       }
+//   }
+
+//   // идём синхронно и ищем пересечение
+//   while (curA && curB) {
+//       if (curA === curB) {
+//           return curA;
+//       }
+//       curA = curA.next;
+//       curB = curB.next;
+//   }
+
+//   return null;
+// };
