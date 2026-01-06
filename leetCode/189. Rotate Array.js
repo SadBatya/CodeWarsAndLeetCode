@@ -23,16 +23,36 @@
 // rotate 1 steps to the right: [99,-1,-100,3]
 // rotate 2 steps to the right: [3,99,-1,-100]
 
+// ============================================
+// РЕШЕНИЕ:
+// Используем технику трех реверсов: сначала реверсим весь массив,
+// затем реверсим первые k элементов и последние n-k элементов.
+// Альтернативно: используем splice для перемещения элементов.
+// ============================================
+// ВРЕМЕННАЯ СЛОЖНОСТЬ: O(n) - один проход по массиву
+// ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ: O(1) - модифицируем массив на месте
+// ============================================
 
-const arr = [1,4,5,6]
-let k = 3
-
-let rotate = function(nums, k) {
+var rotate = function(nums, k) {
+  // Шаг 1: Нормализуем k (на случай если k > nums.length)
+  k = k % nums.length;
   
-  return [...nums.splice(nums.length - k), ...nums.splice(-k)]
-  
+  // Шаг 2: Реверсим весь массив
+  reverse(nums, 0, nums.length - 1);
+  // Шаг 3: Реверсим первые k элементов
+  reverse(nums, 0, k - 1);
+  // Шаг 4: Реверсим оставшиеся элементы
+  reverse(nums, k, nums.length - 1);
 };
 
-// console.log(arr.splice(arr.length - 3))
-
-console.log(reverse())
+// Вспомогательная функция для реверса части массива
+function reverse(nums, start, end) {
+  // Шаг 5: Меняем местами элементы от start до end
+  while (start < end) {
+    let temp = nums[start];
+    nums[start] = nums[end];
+    nums[end] = temp;
+    start++;
+    end--;
+  }
+}

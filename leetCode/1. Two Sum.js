@@ -23,40 +23,38 @@
 // Input: nums = [3,3], target = 6
 // Output: [0,1]
 
-// Первое решение
-// Сложность: O(n²)
-// Память: O(1)
+// ============================================
+// РЕШЕНИЕ:
+// Используем хеш-таблицу (Map) для хранения уже просмотренных чисел и их индексов.
+// Проходим по массиву один раз: для каждого числа вычисляем complement = target - nums[i].
+// Если complement уже есть в Map, значит нашли пару. Иначе добавляем текущее число в Map.
+// ============================================
+// ВРЕМЕННАЯ СЛОЖНОСТЬ: O(n) - один проход по массиву
+// ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ: O(n) - для хранения Map с максимум n элементами
+// ============================================
 
-// var twoSum = function (nums, target) {
-//   for (let i = 0; i < nums.length; i++) {
-//     for (let j = i + 1; j < nums.length; j++) {
-//       if (nums[i] + nums[j] === target) {
-//         return [i, j];
-//       }
-//     }
-//   }
-//   return [];
-// };
+var twoSum = function (nums, target) {
+  // Шаг 1: Создаем Map для хранения чисел и их индексов
+  const map = new Map();
 
-// Второе решение
-// Сложность: O(n)
-// Память: O(n)
+  // Шаг 2: Проходим по массиву один раз
+  for (let i = 0; i < nums.length; i++) {
+    // Шаг 3: Вычисляем complement - число, которое нужно найти
+    const complement = target - nums[i];
 
-// var twoSum = function (nums, target) {
-//   const map = new Map();
+    // Шаг 4: Проверяем, есть ли complement в Map
+    if (map.has(complement)) {
+      // Шаг 5: Если есть, возвращаем индексы пары
+      return [map.get(complement), i];
+    }
 
-//   for (let i = 0; i < nums.length; i++) {
-//     const complement = nums[i] - target;
+    // Шаг 6: Если нет, сохраняем текущее число и его индекс в Map
+    map.set(nums[i], i);
+  }
 
-//     if (map.has(complement)) {
-//       return [map.get(complement), i];
-//     }
-
-//     map.set(nums[i], i);
-//   }
-
-//   return [];
-// };
+  // Шаг 7: Если пара не найдена (не должно произойти по условию)
+  return [];
+};
 
 // const arr = [2, 7, 11, 15];
 // const target = 9;

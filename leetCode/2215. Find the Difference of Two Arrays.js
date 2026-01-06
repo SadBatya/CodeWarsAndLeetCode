@@ -1,38 +1,25 @@
-let nums1 = [1, 4, 5, 7];
-let nums2 = [2, 3, 7];
+// ============================================
+// РЕШЕНИЕ:
+// Используем Set для эффективной проверки принадлежности. Создаем Set из обоих массивов,
+// затем фильтруем элементы, которые есть в одном Set, но отсутствуют в другом.
+// ============================================
+// ВРЕМЕННАЯ СЛОЖНОСТЬ: O(n + m) где n и m - размеры массивов
+// ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ: O(n + m) - для хранения Set'ов
+// ============================================
 
-
-var findDifference = function (nums1, nums2) {
-  let arr1 = [];
-  let arr2 = [];
-
-  for (let i = 0; i < nums1.length; i++) {
-    if (!nums2.includes(nums1[i]) && !arr1.includes(nums1[i]) && arr1.length < 2) {
-      arr1.push(nums1[i]);
-    }
-    if (arr1.length === 2) break;
-  }
-
-  for (let i = 0; i < nums2.length; i++) {
-    if (!nums1.includes(nums2[i]) && !arr2.includes(nums2[i]) && arr2.length < 2) {
-      arr2.push(nums2[i]);
-    }
-    if (arr2.length === 2) break;
-  }
-
-  return [arr1, arr2];
-};
-
-
-// второй вариант решения задачи
 var findDifference = function(nums1, nums2) {
+  // Шаг 1: Создаем Set из первого массива для быстрой проверки
   let s1 = new Set(nums1);
+  // Шаг 2: Создаем Set из второго массива для быстрой проверки
   let s2 = new Set(nums2);
 
+  // Шаг 3: Находим элементы, которые есть в nums1, но отсутствуют в nums2
   let ans1 = Array.from(s1).filter(x => !s2.has(x));
+  // Шаг 4: Находим элементы, которые есть в nums2, но отсутствуют в nums1
   let ans2 = Array.from(s2).filter(x => !s1.has(x));
 
-  return [ans1, ans2]
+  // Шаг 5: Возвращаем оба массива различий
+  return [ans1, ans2];
 };
 
 console.log(findDifference(nums1, nums2));

@@ -10,17 +10,24 @@
 
 // You may assume each function in the array accepts one integer as input and returns one integer as output.
 
-var compose = function (functions) {
-  // 1 способо
-  // return function (x) {
-  //   for (let i = functions.length - 1; i >= 0; --i) {
-  //     x = functions[i](x);
-  //   }
-  //   return x;
-  // };
+// ============================================
+// РЕШЕНИЕ:
+// Композиция функций означает применение функций справа налево.
+// f(g(h(x))) означает: сначала h(x), затем g(h(x)), затем f(g(h(x))).
+// Используем reduceRight для применения функций в обратном порядке.
+// ============================================
+// ВРЕМЕННАЯ СЛОЖНОСТЬ: O(n) где n - количество функций
+// ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ: O(1) - не используем дополнительную память
+// ============================================
 
-  // 2 способ
-    return function (x) {
-      return functions.reduceRight((acc, currentValue) => {currentValue(acc)}, x)
-    }
+var compose = function (functions) {
+  // Шаг 1: Возвращаем функцию, которая принимает начальное значение x
+  return function (x) {
+    // Шаг 2: Применяем функции справа налево используя reduceRight
+    // reduceRight проходит по массиву справа налево
+    return functions.reduceRight((acc, currentValue) => {
+      // Шаг 3: Применяем текущую функцию к аккумулятору
+      return currentValue(acc);
+    }, x);  // Шаг 4: Начальное значение - x
+  };
 };

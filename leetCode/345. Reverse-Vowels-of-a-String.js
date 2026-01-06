@@ -19,33 +19,48 @@
 // 1 <= s.length <= 3 * 105
 // s consist of printable ASCII characters.
 
+// ============================================
+// РЕШЕНИЕ:
+// Используем технику двух указателей. Находим гласные слева и справа,
+// меняем их местами. Продолжаем пока указатели не встретятся.
+// ============================================
+// ВРЕМЕННАЯ СЛОЖНОСТЬ: O(n) - один проход по строке
+// ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ: O(n) - для хранения массива символов
+// ============================================
 
-let reverseVowels = function(s) {
-  const vowels = new Set(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'])
+var reverseVowels = function(s) {
+  // Шаг 1: Создаем Set для быстрой проверки гласных
+  const vowels = new Set(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']);
 
-  const stringArr = [...s]
+  // Шаг 2: Преобразуем строку в массив символов
+  const stringArr = [...s];
 
+  // Шаг 3: Инициализируем два указателя
   let left = 0;
-  let right = stringArr.length - 1
+  let right = stringArr.length - 1;
 
-
-  while(left < right){
-    while(left  < right && !vowels.has(stringArr[left])){
-      left++
-    }
-
-    while(left < right && !vowels.has(stringArr[right])){
-      right--
-    }
-
-    if(left < right){
-      [stringArr[left], stringArr[right]] = [stringArr[right], stringArr[left]]
+  // Шаг 4: Продолжаем пока указатели не встретятся
+  while (left < right) {
+    // Шаг 5: Пропускаем негласные символы слева
+    while (left < right && !vowels.has(stringArr[left])) {
       left++;
-      right--
+    }
+
+    // Шаг 6: Пропускаем негласные символы справа
+    while (left < right && !vowels.has(stringArr[right])) {
+      right--;
+    }
+
+    // Шаг 7: Если нашли пару гласных, меняем их местами
+    if (left < right) {
+      [stringArr[left], stringArr[right]] = [stringArr[right], stringArr[left]];
+      left++;
+      right--;
     }
   }
 
-  return stringArr.join('')
+  // Шаг 8: Возвращаем строку из массива
+  return stringArr.join('');
 };
 
 reverseVowels('hello')

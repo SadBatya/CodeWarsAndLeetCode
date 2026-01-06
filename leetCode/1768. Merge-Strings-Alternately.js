@@ -35,30 +35,39 @@
 // 1 <= word1.length, word2.length <= 100
 // word1 and word2 consist of lowercase English letters.
 
+// ============================================
+// РЕШЕНИЕ:
+// Используем два указателя для обеих строк. Поочередно добавляем символы
+// из word1 и word2. Когда одна строка заканчивается, добавляем остаток другой.
+// ============================================
+// ВРЕМЕННАЯ СЛОЖНОСТЬ: O(m + n) где m и n - длины строк
+// ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ: O(m + n) - для результирующей строки
+// ============================================
 
-const word1 = 'abc'
-const word2 = 'pqr'
-
-let mergeAlternately = function(word1, word2) {
-  let result = ''
+var mergeAlternately = function(word1, word2) {
+  // Шаг 1: Результирующая строка
+  let result = '';
+  // Шаг 2: Указатели для обеих строк
   let i = 0;
   let j = 0;
 
-
-  while(i < word1.length || j < word2.length){
-    if(i < word1.length){
-      result += word1[i]
-      i++
+  // Шаг 3: Продолжаем пока не обработали обе строки
+  while (i < word1.length || j < word2.length) {
+    // Шаг 4: Если есть символы в word1, добавляем его
+    if (i < word1.length) {
+      result += word1[i];
+      i++;
     }
 
-    if(j < word2.length){
-      result += word2[j]
-      j++
+    // Шаг 5: Если есть символы в word2, добавляем его
+    if (j < word2.length) {
+      result += word2[j];
+      j++;
     }
   }
 
-
-  return result
+  // Шаг 6: Возвращаем объединенную строку
+  return result;
 };
 
 console.log(mergeAlternately(word1,word2))

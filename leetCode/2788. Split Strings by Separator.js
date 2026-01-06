@@ -13,18 +13,34 @@
 // A split may result in more than two strings.
 // The resulting strings must maintain the same order as they were initially given.
 
-var splitWordsBySeparator = function(words, separator) {
-     if (!separator) return words;
+// ============================================
+// РЕШЕНИЕ:
+// Проходим по каждому слову в массиве, разбиваем его по separator,
+// добавляем все части в результат. Затем фильтруем пустые строки.
+// ============================================
+// ВРЕМЕННАЯ СЛОЖНОСТЬ: O(n * m) где n - количество слов, m - средняя длина слова
+// ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ: O(n * m) - для хранения результата
+// ============================================
 
+var splitWordsBySeparator = function(words, separator) {
+  // Шаг 1: Если separator не задан, возвращаем исходный массив
+  if (!separator) return words;
+
+  // Шаг 2: Массив для результата
   const result = [];
 
+  // Шаг 3: Проходим по каждому слову
   for (let word of words) {
+    // Шаг 4: Если слово не пустое
     if (word !== "") {
+      // Шаг 5: Разбиваем слово по separator
       const wordArr = word.split(separator);
+      // Шаг 6: Добавляем все части в результат (используем spread для добавления элементов)
       result.push(...wordArr);
     }
   }
 
+  // Шаг 7: Фильтруем пустые строки и возвращаем результат
   return result.filter((str) => str !== "");
 };
 

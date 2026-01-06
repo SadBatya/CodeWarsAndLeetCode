@@ -15,24 +15,25 @@
 // - Kid 4, they will have 1 + 3 = 4 candies, which is not the greatest among the kids.
 // - Kid 5, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
 
-let candies = [2, 3, 5, 1, 3];
-let extraCandies = 3;
+// ============================================
+// РЕШЕНИЕ:
+// Находим максимальное количество конфет в исходном массиве. Для каждого ребенка
+// проверяем, будет ли его количество конфет (текущее + extraCandies) >= максимального.
+// ============================================
+// ВРЕМЕННАЯ СЛОЖНОСТЬ: O(n) - один проход для поиска максимума, один для map
+// ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ: O(n) - массив результатов размера n
+// ============================================
 
-let kidsWithCandies = function (candies, extraCandies) {
-  // let result = []
-  // let newTeamCandies = candies.forEach(value => {
-  //   let extraCandiesKid = value + extraCandies
-  //   if(extraCandiesKid === Math.max(...candies)){
-  //     result.push('true')
-  //   }else{
-  //     result.push('false')
-  //   }
-  // })
+var kidsWithCandies = function (candies, extraCandies) {
+  // Шаг 1: Находим максимальное количество конфет в исходном массиве
+  const maxCandies = Math.max(...candies);
   
-
-  const maxCandies = Math.max(...candies)
-  let result = candies.map(value => value + extraCandies >= maxCandies)
-  return result
+  // Шаг 2: Для каждого ребенка проверяем, будет ли у него максимальное количество
+  // после добавления extraCandies
+  let result = candies.map(value => value + extraCandies >= maxCandies);
+  
+  // Шаг 3: Возвращаем массив булевых значений
+  return result;
 };
 
 kidsWithCandies(candies, extraCandies);

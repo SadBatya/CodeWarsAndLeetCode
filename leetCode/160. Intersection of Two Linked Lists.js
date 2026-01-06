@@ -21,25 +21,45 @@
 // skipB - The number of nodes to skip ahead in listB (starting from the head) to get to the intersected node.
 // The judge will then create the linked structure based on these inputs and pass the two heads, headA and headB to your program. If you correctly return the intersected node, then your solution will be accepted.
 
+// ============================================
+// РЕШЕНИЕ:
+// Используем технику "двух указателей с переключением". Когда указатель достигает конца
+// одного списка, переключаем его на начало другого. Это выравнивает указатели,
+// так как они пройдут одинаковое расстояние (a + b = b + a), и встретятся в точке пересечения.
+// ============================================
+// ВРЕМЕННАЯ СЛОЖНОСТЬ: O(m + n) где m и n - длины списков
+// ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ: O(1) - используем только константное количество переменных
+// ============================================
+
 let getIntersectionNode = function (headA, headB) {
+  // Шаг 1: Проверяем, что оба списка не пусты
   if (!headA || !headB) return null;
 
+  // Шаг 2: Создаем два указателя, начинаем с голов списков
   let pointA = headA;
   let pointB = headB;
 
+  // Шаг 3: Продолжаем пока указатели не встретятся
   while (pointA !== pointB) {
+    // Шаг 4: Если pointA достиг конца списка A
     if (pointA === null) {
+      // Шаг 5: Переключаем на начало списка B
       pointA = headB;
     } else {
+      // Шаг 6: Иначе двигаемся дальше по списку A
       pointA = pointA.next;
     }
+    // Шаг 7: Если pointB достиг конца списка B
     if (pointB === null) {
+      // Шаг 8: Переключаем на начало списка A
       pointB = headA;
     } else {
+      // Шаг 9: Иначе двигаемся дальше по списку B
       pointB = pointB.next;
     }
   }
 
+  // Шаг 10: Возвращаем узел пересечения (или null, если пересечения нет)
   return pointA;
 };
 

@@ -23,30 +23,40 @@
 // const obj = new ArrayWrapper([23,98,42,70]);
 // String(obj); // "[23,98,42,70]"
 
+// ============================================
+// РЕШЕНИЕ:
+// Создаем класс, который хранит массив. Переопределяем valueOf для сложения
+// (возвращает сумму элементов) и toString для строкового представления
+// (возвращает массив в формате "[1,2,3]").
+// ============================================
+// ВРЕМЕННАЯ СЛОЖНОСТЬ: O(n) для valueOf (суммирование), O(n) для toString
+// ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ: O(n) - для хранения массива
+// ============================================
 
 /**
  * @param {number[]} nums
  * @return {void}
  */
-
 var ArrayWrapper = function(nums) {
-    this.nums = nums
-
+    // Шаг 1: Сохраняем массив в свойстве объекта
+    this.nums = nums;
 };
 
 /**
  * @return {number}
  */
 ArrayWrapper.prototype.valueOf = function() {
-    return this.nums.reduce((n, acc) => n + acc , 0)
-}
+    // Шаг 2: При сложении объектов возвращаем сумму всех элементов массива
+    return this.nums.reduce((acc, n) => acc + n, 0);
+};
 
 /**
  * @return {string}
  */
 ArrayWrapper.prototype.toString = function() {
-    return `[${String(this.nums)}]`
-}
+    // Шаг 3: При преобразовании в строку возвращаем массив в формате "[1,2,3]"
+    return `[${String(this.nums)}]`;
+};
 
 /**
  * const obj1 = new ArrayWrapper([1,2]);

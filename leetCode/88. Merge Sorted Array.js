@@ -29,44 +29,45 @@
 // The result of the merge is [1].
 // Note that because m = 0, there are no elements in nums1. The 0 is only there to ensure the merge result can fit in nums1.
 
-let nums1 = [1, 2, 3, 0, 0, 0];
-let m = 3;
-let nums2 = [2, 5, 6];
-let n = 3;
+// ============================================
+// РЕШЕНИЕ:
+// Используем технику слияния с конца (merge from end). Начинаем с конца обоих массивов
+// и заполняем nums1 справа налево. Это позволяет не перезаписывать элементы nums1,
+// которые еще не обработаны.
+// ============================================
+// ВРЕМЕННАЯ СЛОЖНОСТЬ: O(m + n) - проходим по обоим массивам один раз
+// ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ: O(1) - используем только константное количество переменных
+// ============================================
 
-// var merge = function (nums1, m, nums2, n) {
-//   const result = [...nums1.slice(0, m), ...nums2.slice(0, n)].sort(
-//     (a, b) => a - b
-//   )
+var merge = function (nums1, m, nums2, n) {
+  // Шаг 1: Указатели на концы массивов
+  let i = m - 1;  // Последний элемент в nums1
+  let j = n - 1;  // Последний элемент в nums2
+  let k = m + n - 1;  // Позиция для записи в nums1
 
-//   nums1.forEach((_e, index) => (nums1[index] = result[index]))
-// }
-
-// Решение с помощью двух указателей
-const merge = (nums1, m, nums2, n) => {
-  let result = [];
-  let p1 = 0;
-  let p2 = 0;
-
-  while (p1 < m && p2 < n) {
-    if (nums1[p1] < nums2[p2]) {
-      result.push(nums1[p1]);
-      p1++;
+  // Шаг 2: Пока оба массива не обработаны
+  while (i >= 0 && j >= 0) {
+    // Шаг 3: Сравниваем элементы с конца
+    if (nums1[i] > nums2[j]) {
+      // Шаг 4: Если элемент из nums1 больше, записываем его
+      nums1[k] = nums1[i];
+      i--;
     } else {
-      result.push(nums2[p2]);
-      p2++;
+      // Шаг 5: Иначе записываем элемент из nums2
+      nums1[k] = nums2[j];
+      j--;
     }
+    // Шаг 6: Переходим к следующей позиции
+    k--;
   }
 
-  for (let i = 0; i < n - p2; i++) {
-    result.push(nums2[p2 + i]);
+  // Шаг 7: Если остались элементы в nums2, копируем их
+  while (j >= 0) {
+    nums1[k] = nums2[j];
+    j--;
+    k--;
   }
 
-  for (let i = 0; i < m - p1; i++) {
-    result.push(nums1[p1 + i]);
-  }
-
-  return result;
+  // Шаг 8: Элементы nums1 уже на своих местах, если остались
+  // nums1 модифицирован на месте
 };
-
-console.log(merge(nums1, m, nums2, n));

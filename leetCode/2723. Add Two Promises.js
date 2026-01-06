@@ -20,12 +20,24 @@
 // Output: -2
 // Explanation: The two input promises resolve with the values of 10 and -12 respectively. The returned promise should resolve with a value of 10 + -12 = -2.
 
-export const addTwoPromises = async function (promise1, promise2) {
+// ============================================
+// РЕШЕНИЕ:
+// Используем Promise.all для ожидания разрешения обеих промисов одновременно.
+// Используем catch для обработки возможных ошибок. Суммируем результаты.
+// ============================================
+// ВРЕМЕННАЯ СЛОЖНОСТЬ: O(1) - ожидание промисов (асинхронная операция)
+// ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ: O(1) - не используем дополнительную память
+// ============================================
+
+var addTwoPromises = async function (promise1, promise2) {
+  // Шаг 1: Ожидаем разрешения обеих промисов одновременно
+  // Шаг 2: Используем catch для обработки возможных ошибок
   const [num1, num2] = await Promise.all([
     promise1.catch((num) => num),
     promise2.catch((num) => num),
   ]);
 
+  // Шаг 3: Возвращаем сумму результатов обеих промисов
   return num1 + num2;
 };
 
